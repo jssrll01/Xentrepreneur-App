@@ -1244,11 +1244,6 @@ html, body {
   .lesson-nav { grid-template-columns: 1fr; }
 }
 
-  background: var(--accent);
-  color: #000;
-  border-color: var(--accent);
-}
-
 /* ---------- NOTIFICATIONS PAGE ---------- */
 .notif-page { max-width: 720px; margin: 0 auto; }
 .notif-page-list {
