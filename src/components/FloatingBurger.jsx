@@ -21,15 +21,11 @@ export default function FloatingBurger() {
   const navigate = useNavigate()
   const location = useLocation()
 
-  useEffect(() => {
-    setOpen(false)
-  }, [location.pathname])
+  useEffect(() => { setOpen(false) }, [location.pathname])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
-    return () => {
-      document.body.style.overflow = ''
-    }
+    return () => { document.body.style.overflow = '' }
   }, [open])
 
   const handleLogout = () => {
