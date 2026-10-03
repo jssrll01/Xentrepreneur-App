@@ -5,7 +5,7 @@ import PageTransition from '../components/PageTransition'
 import Icon from '../components/Icon'
 
 const INITIAL = [
-  { id: 1, title: 'Welcome to Xentrepreneur', body: 'Your 50-lesson business curriculum is ready.' },
+  { id: 1, title: 'Welcome to Xentrepreneur', body: 'Your 449-lessons business curriculum is ready.' },
   { id: 2, title: 'New Lesson: Price Psychology', body: 'Learn how to frame prices for better decisions.' },
   { id: 3, title: 'New Lesson: Choice Psychology', body: 'Design decisions customers can actually make.' },
   { id: 4, title: 'New Lesson: Urgency', body: 'Learn how to motivate action with real deadlines.' },
