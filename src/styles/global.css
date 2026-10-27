@@ -2229,3 +2229,153 @@ p, span {
   color: var(--text-primary) !important;
   border: none !important;
 }
+
+/* =========================================
+   DARK NEUMORPHISM (SOFT UI) OVERRIDE
+   ========================================= */
+
+:root {
+  /* Dark Neumorphic Palette */
+  --bg-primary: #2c2f33;    /* Base dark gray */
+  --bg-secondary: #2c2f33;
+  --bg-card: #2c2f33;       /* Same as base for seamless blending */
+  
+  /* Accent colors */
+  --accent: #00ffa3;        /* Back to your original neon green */
+  --accent-2: #7c3aed;
+  
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #a0a5ac;
+  --border: transparent; 
+
+  /* Dark Neumorphic Shadows */
+  /* Top-left is a subtle light gray, bottom-right is a deep shadow */
+  --shadow-light: -6px -6px 14px rgba(255, 255, 255, 0.05);
+  --shadow-dark: 6px 6px 14px rgba(0, 0, 0, 0.4);
+  --shadow-inset-light: inset -4px -4px 10px rgba(255, 255, 255, 0.05);
+  --shadow-inset-dark: inset 4px 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Global Body adjustments */
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* 1. Navbar & Headers */
+.navbar {
+  background: var(--bg-primary) !important;
+  backdrop-filter: none !important;
+  border-bottom: none !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.navbar .logo {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.navbar a {
+  color: var(--text-primary) !important;
+}
+
+/* 2. Cards, Modules, Settings, Search */
+.card, 
+.module, 
+.settings-card, 
+.search-wrap,
+.lesson-return-card,
+.notif-page-list li {
+  background: var(--bg-card) !important;
+  border-radius: 20px !important;
+  border: none !important;
+  box-shadow: var(--shadow-light), var(--shadow-dark) !important;
+  transition: all 0.3s ease;
+}
+
+/* Add slight hover lift */
+.card:hover,
+.lesson-card:hover {
+  transform: translateY(-4px);
+  box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.06), 8px 8px 16px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 3. Inputs, Search, Sliders - Inset pressed look */
+.search-input,
+.fontsize-slider {
+  background: var(--bg-secondary) !important;
+  box-shadow: var(--shadow-inset-light), var(--shadow-inset-dark) !important;
+  border: none !important;
+  color: var(--text-primary) !important;
+}
+.search-input::placeholder {
+  color: var(--text-secondary);
+}
+.search-icon, .search-clear {
+  color: var(--text-secondary) !important;
+}
+
+/* 4. Buttons */
+.floating-burger {
+  background: var(--bg-primary) !important;
+  box-shadow: var(--shadow-light), var(--shadow-dark) !important;
+  border: none !important;
+}
+.burger-line {
+  background-color: var(--text-primary) !important;
+}
+.cta, .burger-install, .burger-logout, .setting-danger {
+  background: var(--bg-primary) !important;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4), -4px -4px 10px rgba(255, 255, 255, 0.05) !important;
+  border: none !important;
+  color: var(--text-primary) !important;
+  border-radius: 12px !important;
+}
+.cta:active, .burger-install:active {
+  box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.4), inset -4px -4px 10px rgba(255, 255, 255, 0.05) !important;
+}
+
+/* 5. Drawer (Floating Menu) */
+.burger-drawer {
+  background: var(--bg-primary) !important;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.6) !important;
+}
+.burger-links a {
+  color: var(--text-primary) !important;
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+.burger-links a.active, .burger-links a:hover {
+  box-shadow: var(--shadow-inset-light), var(--shadow-inset-dark);
+  background: var(--bg-primary);
+}
+
+/* 6. Footer */
+.footer {
+  background: var(--bg-primary) !important;
+  border-top: none !important;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* 7. Typography refinements */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary) !important;
+}
+p, span {
+  color: var(--text-secondary);
+}
+.lesson-tag {
+  background: var(--bg-primary) !important;
+  box-shadow: var(--shadow-inset-light), var(--shadow-inset-dark);
+  color: var(--accent) !important;
+  border: none !important;
+}
+
+/* 8. Back to Top Button */
+.back-to-top {
+  background: var(--bg-primary) !important;
+  box-shadow: var(--shadow-light), var(--shadow-dark) !important;
+  color: var(--text-primary) !important;
+  border: none !important;
+}
