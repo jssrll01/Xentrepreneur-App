@@ -2231,44 +2231,40 @@ p, span {
 }
 
 /* =========================================
-   DARK NEUMORPHISM (SOFT UI) OVERRIDE
+   DARK NEUMORPHISM (CLEAN, NO WHITE SHADOWS)
    ========================================= */
 
 :root {
-  /* Dark Neumorphic Palette */
-  --bg-primary: #2c2f33;    /* Base dark gray */
+  --bg-primary: #2c2f33;    
   --bg-secondary: #2c2f33;
-  --bg-card: #2c2f33;       /* Same as base for seamless blending */
+  --bg-card: #2c2f33;       
   
-  /* Accent colors */
-  --accent: #00ffa3;        /* Back to your original neon green */
+  --accent: #00ffa3;        
   --accent-2: #7c3aed;
   
-  /* Text Colors */
-  --text-primary: #ffffff;
-  --text-secondary: #a0a5ac;
+  /* Pure white for headings, soft gray for body text */
+  --text-primary: #f8f9fa; 
+  --text-secondary: #b0b7c3; 
   --border: transparent; 
 
-  /* Dark Neumorphic Shadows */
-  /* Top-left is a subtle light gray, bottom-right is a deep shadow */
-  --shadow-light: -6px -6px 14px rgba(255, 255, 255, 0.05);
-  --shadow-dark: 6px 6px 14px rgba(0, 0, 0, 0.4);
-  --shadow-inset-light: inset -4px -4px 10px rgba(255, 255, 255, 0.05);
-  --shadow-inset-dark: inset 4px 4px 10px rgba(0, 0, 0, 0.4);
+  /* Only dark shadows for depth */
+  --shadow-light: -6px -6px 14px rgba(255, 255, 255, 0); /* Invisible light shadow */
+  --shadow-dark: 8px 8px 16px rgba(0, 0, 0, 0.6);
+  --shadow-inset-light: inset -4px -4px 10px rgba(255, 255, 255, 0);
+  --shadow-inset-dark: inset 6px 6px 10px rgba(0, 0, 0, 0.6);
 }
 
-/* Global Body adjustments */
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
 }
 
-/* 1. Navbar & Headers */
+/* 1. Navbar */
 .navbar {
   background: var(--bg-primary) !important;
   backdrop-filter: none !important;
   border-bottom: none !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 .navbar .logo {
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
@@ -2279,7 +2275,7 @@ body {
   color: var(--text-primary) !important;
 }
 
-/* 2. Cards, Modules, Settings, Search */
+/* 2. Cards */
 .card, 
 .module, 
 .settings-card, 
@@ -2293,14 +2289,13 @@ body {
   transition: all 0.3s ease;
 }
 
-/* Add slight hover lift */
 .card:hover,
 .lesson-card:hover {
   transform: translateY(-4px);
-  box-shadow: -8px -8px 16px rgba(255, 255, 255, 0.06), 8px 8px 16px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8) !important;
 }
 
-/* 3. Inputs, Search, Sliders - Inset pressed look */
+/* 3. Inputs */
 .search-input,
 .fontsize-slider {
   background: var(--bg-secondary) !important;
@@ -2326,19 +2321,19 @@ body {
 }
 .cta, .burger-install, .burger-logout, .setting-danger {
   background: var(--bg-primary) !important;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4), -4px -4px 10px rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6) !important; /* Removed white side */
   border: none !important;
   color: var(--text-primary) !important;
   border-radius: 12px !important;
 }
 .cta:active, .burger-install:active {
-  box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.4), inset -4px -4px 10px rgba(255, 255, 255, 0.05) !important;
+  box-shadow: var(--shadow-inset-light), var(--shadow-inset-dark) !important;
 }
 
-/* 5. Drawer (Floating Menu) */
+/* 5. Drawer */
 .burger-drawer {
   background: var(--bg-primary) !important;
-  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.6) !important;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8) !important;
 }
 .burger-links a {
   color: var(--text-primary) !important;
@@ -2355,15 +2350,15 @@ body {
 .footer {
   background: var(--bg-primary) !important;
   border-top: none !important;
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.4);
 }
 
-/* 7. Typography refinements */
+/* 7. Typography */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--text-primary) !important;
+  color: #ffffff !important; /* Pure white for headings */
 }
-p, span {
-  color: var(--text-secondary);
+p, span, div {
+  color: #b0b7c3 !important; /* Soft off-white/gray for body text */
 }
 .lesson-tag {
   background: var(--bg-primary) !important;
@@ -2371,8 +2366,11 @@ p, span {
   color: var(--accent) !important;
   border: none !important;
 }
+.lesson-card h3 {
+  color: #ffffff !important; /* Make card titles pop */
+}
 
-/* 8. Back to Top Button */
+/* 8. Back to Top */
 .back-to-top {
   background: var(--bg-primary) !important;
   box-shadow: var(--shadow-light), var(--shadow-dark) !important;
