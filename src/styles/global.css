@@ -2230,150 +2230,187 @@ p, span {
   border: none !important;
 }
 
-/* =========================================
-   DARK NEUMORPHISM (CLEAN, NO WHITE SHADOWS)
-   ========================================= */
+/* XENTREPRENEUR - DARK NEUMORPHISM v3 */
+@view-transition { navigation: auto; }
 
 :root {
-  --bg-primary: #2c2f33;    
-  --bg-secondary: #2c2f33;
-  --bg-card: #2c2f33;       
-  
-  --accent: #00ffa3;        
+  --bg: #2c2f33;
+  --bg-primary: var(--bg);
+  --bg-secondary: var(--bg);
+  --bg-card: var(--bg);
+  --accent: #00ffa3;
   --accent-2: #7c3aed;
-  
-  /* Pure white for headings, soft gray for body text */
-  --text-primary: #f8f9fa; 
-  --text-secondary: #b0b7c3; 
-  --border: transparent; 
-
-  /* Only dark shadows for depth */
-  --shadow-light: -6px -6px 14px rgba(255, 255, 255, 0); /* Invisible light shadow */
-  --shadow-dark: 8px 8px 16px rgba(0, 0, 0, 0.6);
-  --shadow-inset-light: inset -4px -4px 10px rgba(255, 255, 255, 0);
-  --shadow-inset-dark: inset 6px 6px 10px rgba(0, 0, 0, 0.6);
+  --text-primary: #f4f6f8;
+  --text-secondary: #b0b7c3;
+  --border: transparent;
+  --sh: rgba(0, 0, 0, .55);
+  --hl: rgba(255, 255, 255, .035);
+  --raise: 8px 8px 18px var(--sh), -5px -5px 12px var(--hl);
+  --raise-sm: 4px 4px 10px var(--sh), -3px -3px 7px var(--hl);
+  --press: inset 5px 5px 11px var(--sh), inset -3px -3px 8px var(--hl);
+  --glow: 0 0 0 2px rgba(0, 255, 163, .55), 0 0 18px rgba(0, 255, 163, .35);
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --r-lg: 22px;
+  --r-md: 14px;
 }
 
+html { scrollbar-color: #3b3f45 var(--bg); }
 body {
-  background: var(--bg-primary);
+  background: var(--bg);
   color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* 1. Navbar */
+h1, h2, h3, h4, h5, h6 { color: #fff !important; letter-spacing: -.01em; }
+p, li { color: var(--text-secondary); line-height: 1.65; }
+::selection { background: rgba(0, 255, 163, .28); }
+
 .navbar {
-  background: var(--bg-primary) !important;
+  background: var(--bg) !important;
   backdrop-filter: none !important;
-  border-bottom: none !important;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  border: none !important;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, .35);
+  padding-top: env(safe-area-inset-top);
+  view-transition-name: x-nav;
 }
 .navbar .logo {
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.navbar a {
-  color: var(--text-primary) !important;
-}
-
-/* 2. Cards */
-.card, 
-.module, 
-.settings-card, 
-.search-wrap,
-.lesson-return-card,
-.notif-page-list li {
-  background: var(--bg-card) !important;
-  border-radius: 20px !important;
+.navbar a { color: var(--text-primary) !important; }
+.footer {
+  background: var(--bg) !important;
   border: none !important;
-  box-shadow: var(--shadow-light), var(--shadow-dark) !important;
-  transition: all 0.3s ease;
+  box-shadow: 0 -8px 18px rgba(0, 0, 0, .35);
+  padding-bottom: env(safe-area-inset-bottom);
+  view-transition-name: x-footer;
 }
 
-.card:hover,
-.lesson-card:hover {
+.card, .module, .settings-card, .search-wrap, .lesson-return-card, .notif-page-list li {
+  background: var(--bg) !important;
+  border: none !important;
+  border-radius: var(--r-lg) !important;
+  box-shadow: var(--raise) !important;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.card:hover, .lesson-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8) !important;
+  box-shadow: 12px 14px 26px var(--sh), -6px -6px 14px var(--hl) !important;
 }
+.card:active, .lesson-card:active { transform: translateY(0) scale(.985); }
 
-/* 3. Inputs */
-.search-input,
-.fontsize-slider {
-  background: var(--bg-secondary) !important;
-  box-shadow: var(--shadow-inset-light), var(--shadow-inset-dark) !important;
+.search-input, .lesson-tag {
+  background: var(--bg) !important;
+  box-shadow: var(--press) !important;
   border: none !important;
   color: var(--text-primary) !important;
 }
-.search-input::placeholder {
-  color: var(--text-secondary);
-}
-.search-icon, .search-clear {
-  color: var(--text-secondary) !important;
-}
+.search-input { border-radius: var(--r-md); transition: box-shadow .25s var(--ease); }
+.search-input:focus { outline: none; box-shadow: var(--press), var(--glow) !important; }
+.search-input::placeholder { color: var(--text-secondary); }
+.search-icon, .search-clear { color: var(--text-secondary) !important; }
+.lesson-tag { color: var(--accent) !important; border-radius: 999px; }
 
-/* 4. Buttons */
-.floating-burger {
-  background: var(--bg-primary) !important;
-  box-shadow: var(--shadow-light), var(--shadow-dark) !important;
-  border: none !important;
-}
-.burger-line {
-  background-color: var(--text-primary) !important;
-}
 .cta, .burger-install, .burger-logout, .setting-danger {
-  background: var(--bg-primary) !important;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6) !important; /* Removed white side */
+  position: relative;
+  background: var(--bg) !important;
+  border: none !important;
+  border-radius: var(--r-md) !important;
+  color: var(--text-primary) !important;
+  box-shadow: var(--raise-sm) !important;
+  transition: transform .2s var(--ease), color .2s;
+}
+.cta::after, .burger-install::after, .burger-logout::after, .setting-danger::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--press);
+  opacity: 0;
+  transition: opacity .2s var(--ease);
+  pointer-events: none;
+}
+.cta:hover { color: var(--accent) !important; }
+.cta:active, .burger-install:active, .burger-logout:active, .setting-danger:active { transform: scale(.97); }
+.cta:active::after, .burger-install:active::after, .burger-logout:active::after, .setting-danger:active::after { opacity: 1; }
+.setting-danger { color: #ff6b81 !important; }
+
+.floating-burger, .back-to-top {
+  background: var(--bg) !important;
   border: none !important;
   color: var(--text-primary) !important;
-  border-radius: 12px !important;
+  box-shadow: var(--raise) !important;
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease);
 }
-.cta:active, .burger-install:active {
-  box-shadow: var(--shadow-inset-light), var(--shadow-inset-dark) !important;
-}
+.floating-burger { view-transition-name: x-burger; }
+.floating-burger:active, .back-to-top:active { transform: scale(.94); box-shadow: var(--raise-sm) !important; }
+.burger-line { background-color: var(--text-primary) !important; transition: transform .3s var(--ease), opacity .2s; }
 
-/* 5. Drawer */
 .burger-drawer {
-  background: var(--bg-primary) !important;
-  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8) !important;
+  background: var(--bg) !important;
+  box-shadow: -12px 0 32px rgba(0, 0, 0, .7) !important;
+  transition: transform .45s var(--ease), opacity .3s;
 }
 .burger-links a {
   color: var(--text-primary) !important;
-  border-radius: 12px;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem 1rem;
+  border-radius: var(--r-md);
+  margin-bottom: .5rem;
+  padding: .6rem 1rem;
+  transition: box-shadow .25s var(--ease), color .25s;
 }
-.burger-links a.active, .burger-links a:hover {
-  box-shadow: var(--shadow-inset-light), var(--shadow-inset-dark);
-  background: var(--bg-primary);
-}
-
-/* 6. Footer */
-.footer {
-  background: var(--bg-primary) !important;
-  border-top: none !important;
-  box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.4);
-}
-
-/* 7. Typography */
-h1, h2, h3, h4, h5, h6 {
-  color: #ffffff !important; /* Pure white for headings */
-}
-p, span, div {
-  color: #b0b7c3 !important; /* Soft off-white/gray for body text */
-}
-.lesson-tag {
-  background: var(--bg-primary) !important;
-  box-shadow: var(--shadow-inset-light), var(--shadow-inset-dark);
+.burger-links a:hover, .burger-links a.active {
+  background: var(--bg);
+  box-shadow: var(--press);
   color: var(--accent) !important;
-  border: none !important;
-}
-.lesson-card h3 {
-  color: #ffffff !important; /* Make card titles pop */
 }
 
-/* 8. Back to Top */
-.back-to-top {
-  background: var(--bg-primary) !important;
-  box-shadow: var(--shadow-light), var(--shadow-dark) !important;
-  color: var(--text-primary) !important;
+.fontsize-slider {
+  -webkit-appearance: none; appearance: none;
+  height: 10px; border-radius: 999px;
+  background: var(--bg) !important;
+  box-shadow: var(--press) !important;
   border: none !important;
+}
+.fontsize-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--bg);
+  box-shadow: var(--raise-sm), inset 0 0 0 6px var(--bg), inset 0 0 0 12px var(--accent);
+  cursor: grab;
+}
+.fontsize-slider::-moz-range-thumb {
+  width: 24px; height: 24px; border: none; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: var(--raise-sm);
+}
+
+:where(a, button, [tabindex]):focus-visible { outline: none; box-shadow: var(--glow) !important; }
+
+::view-transition-group(root) { animation-duration: .45s; animation-timing-function: var(--ease); }
+::view-transition-old(root) { animation: x-out .28s var(--ease) both; }
+::view-transition-new(root) { animation: x-in .45s var(--ease) both; }
+::view-transition-group(x-nav), ::view-transition-group(x-footer), ::view-transition-group(x-burger) { animation-duration: 0s; }
+::view-transition-group(lesson-title) { animation-duration: .5s; animation-timing-function: var(--ease); }
+::view-transition-old(lesson-title), ::view-transition-new(lesson-title) { height: 100%; object-fit: contain; }
+
+@keyframes x-out { to { opacity: 0; transform: scale(.97); filter: blur(4px); } }
+@keyframes x-in { from { opacity: 0; transform: translateY(14px) scale(1.01); } }
+
+@supports (animation-timeline: view()) {
+  .lesson-card {
+    animation: x-rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
+  @keyframes x-rise {
+    from { opacity: .4; transform: scale(.96); box-shadow: 0 0 0 var(--sh), 0 0 0 var(--hl); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  @view-transition { navigation: none; }
 }
